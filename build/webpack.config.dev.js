@@ -1,17 +1,13 @@
 const webpack = require('webpack'),
   htmlPlugin = require('html-webpack-plugin'),
   devServer = require('webpack-dev-server'),
-  miniCssExtractPlugin = require('mini-css-extract-plugin'),
   copyWebpackPlugin = require('copy-webpack-plugin'),
   VueLoaderPlugin = require('vue-loader/lib/plugin')
 
-merge = require('webpack-merge')
+  merge = require('webpack-merge')
 const config = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new miniCssExtractPlugin({
-      filename: 'css/[name]-[hash:8].css'
-    })
   ],
   devServer: {
     contentBase: "./dist",
@@ -26,11 +22,31 @@ const config = {
     rules: [
       {
         test: /\.css$/,
-        use: [miniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
+        use: ['style-loader', 'css-loader', 'postcss-loader']
       },
       {
         test: /\.scss$/,
-        use: [miniCssExtractPlugin.loader, 'css-loader', 'sass-loader', 'postcss-loader']
+        use: [
+          'style-loader', 
+          {
+            loader:'css-loader',
+            options:{
+                sourceMap:true
+            }
+          },
+         {
+            loader:'postcss-loader',
+            options:{
+                sourceMap:true
+            }
+          },
+          {
+            loader:'sass-loader',
+            options:{
+                sourceMap:true
+            }
+         }
+        ]
       }
     ]
   }

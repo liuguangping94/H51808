@@ -1,30 +1,28 @@
 <template>
   <div>
     <h1>App</h1>
-    <nav> 
+    <nav>
       <router-link to="/">首页</router-link>
       <router-link to="/user">会员中心</router-link>
+      <router-link to="/user/123">会员中心123</router-link>
+      <router-link to="/user/456">会员中心456</router-link>
       <router-link to="/about">关于我们</router-link>
     </nav>
     <router-view></router-view>
     <router-view name="header"></router-view>
-
     <router-view name="footer"></router-view>
-
-
   </div>
 </template>
-<style>
-nav a{
-  margin: 0 10px;
-}
-</style>
 <script>
 export default {
-  mounted(){
-    console.log(this.$route)
+  mounted () {
+    // console.log(this.$route)
   }
 }
 </script>
 
-
+<style>
+nav a{
+  margin: 0 10px
+}
+</style>

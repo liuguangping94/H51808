@@ -1,20 +1,30 @@
 <template>
+  <div>
     <div>
-        <div>
-            about
-        </div>
-        <nav>
-            <router-link to="/about/tel">电话</router-link>
-            <router-link to="/about/addr">地址</router-link>
-        </nav>
-        <router-view></router-view>
+      About
     </div>
-    
+    <nav>
+      <router-link to="/about/tel">电话</router-link>
+      <router-link to="/about/addr">地址</router-link>
+    </nav>
+    <router-view></router-view>
+  </div>
 </template>
 <script>
 export default {
-    mounted(){
-        console.log(this.$route)
-    }
+  mounted () {
+    // console.log(this.$route)
+  },
+  // beforeCreate(){
+  //   console.log('beforeCreate')
+  // },
+  beforeRouteEnter(to, from, next){
+    console.log('beforeRouteEnter')
+    // console.log(this.$el)
+    next(vm => {
+      // console.log(vm.$el)
+      //回调函数  延迟执行
+    })
+  }
 }
 </script>

@@ -5,6 +5,7 @@
   "plugins": [
     "transform-vue-jsx",
     "jsx-v-model",
-    "jsx-vue-functional"
+    "jsx-vue-functional",
+    "syntax-dynamic-import"
   ]
 }

@@ -1,92 +1,38 @@
 <template>
-<div class="container">
-  <transition name="slider">
-    <router-view class="main"></router-view>
-  </transition>
-    <router-view name="footer"></router-view>
-</div>
+  <div>
+    test
+  </div>
 </template>
-
 <script>
+import jsonp from 'jsonp'
+/* eslint no-eval:off */
+// import axios from 'axios'
 export default {
-    mounted() {
-
+  created(){
+    // axios.get('http://music.henshui.com/api/musicList.js?!234')
+    //   .then((res) => {
+    //     console.log(res.data)
+    //     // this.musicList = res.data
+    //     // this.musicList = JSON.parse(res.data)
+    //     this.musicList = eval(res.data)
+    //   })
+      // fetch('http://music.henshui.com/api/musicList.js?!234')
+      //   .then(res => res.text())
+      //   .then(res => {
+      //       console.log(res)
+      //     })
+      jsonp('https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_opt.fcg?page=index&format=html&tpl=macv4&v8debug=1&jsonCallback=jsonCallback', {
+        name:'jsonCallback'
+      }, (err, data) => {
+        console.log(err)
+        console.log(data)
+      })
+  },
+  data() {
+    return{
+      musicList: []
     }
+  }
 }
 </script>
 
-<style lang="scss">
-html,
-body {
-    overflow: hidden;
-}
-
-body {
-    margin: 0;
-}
-
-ul,
-li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-a {
-    text-decoration: none;
-}
-
-.container {
-    display: flex;
-    height: 100vh;
-    flex-direction: column;
-
-    .main {
-        flex: 1 1 0%;
-    }
-
-    .nav {
-        flex: 0 0 50px;
-    }
-}
-
-nav a {
-    margin: 0 10px
-}
-
-.slider-enter-active,
-.slider-leave-active {
-    transition: all 2s;
-    position: absolute;
-}
-
-.slider-enter {
-    opacity: 0;
-    transform: translate3d(-300px, 0, 0)
-}
-
-.slider-leave-to {
-    opacity: 0;
-    transform: translate3d(300px, 0, 0)
-}
-
-.slider2-enter-active,
-.slider2-leave-active {
-    transition: all 2s;
-    position: absolute;
-}
-
-.slider2-enter {
-    opacity: 0;
-    transform: translate3d(300px, 0, 0)
-}
-
-.slider2-leave-to {
-    opacity: 0;
-    transform: translate3d(-300px, 0, 0)
-}
-.app>div {
-    width: 100%;
-    position: absolute;
-}
-</style>
